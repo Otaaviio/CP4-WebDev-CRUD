@@ -56,18 +56,8 @@ const postList = document.querySelector("#postList");
 
 window.onload = () => {
     showPost();
-    playerForm.addEventListener("submit", addPost);
-
-    postList.addEventListener('click', handleClick);
 };
 
-const handleClick = (infosDoEvento) => {
-    const action = infosDoEvento.target.dataset.action;
-    const index = infosDoEvento.target.dataset.index;
-    
-    if (action === "Editar") updatePost(index);
-    else if (action === "Deletar") deletePost(index);
-}
 
 function addPost(e){
     e.preventDefault();
@@ -99,7 +89,7 @@ function showPost(){
     const postArea = document.querySelector("#postList");
     postArea.innerHTML = "";
 
-     posts.forEach((item, i) => {
+     posts.forEach((item) => {
         const cardPost = document.createElement("div");
         cardPost.classList.add("player-card");
 
@@ -114,17 +104,9 @@ function showPost(){
                 <p><strong>Gols:</strong> ${item.gols}</p>
                 <p><strong>Assistências:</strong> ${item.assistencias}</p>
                 <p><strong>Jogos:</strong> ${item.jogos}</p>
-                <button data-action="Editar" data-index="${i}">Editar</button>
-                <button data-action="Deletar" data-index="${i}">Deletar</button>
             </div>
         `;
 
         postArea.appendChild(cardPost);
     });
-};
-
-function deletePost(index){
-    const confirmar = confirm("Voce deseja realmente excluir")
-    if (confirmar) posts.splice(index, 1);
-    showPost();
 };
