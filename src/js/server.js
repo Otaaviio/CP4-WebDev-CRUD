@@ -79,3 +79,34 @@ function addPost(e){
 
     posts.unshift(novoPost);
 };
+
+function showPost(){
+    const postArea = document.querySelector("#postArea");
+    postArea.innerHTML = "";
+
+    posts.forEach((pegaItem, i) => {
+        const cardPost = document.createElement("div");
+
+        cardPost.classList.add("card");
+
+        cardPost.innerHTML = `
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${pegaItem.foto}" class="img-fluid rounded-start" alt="${pegaItem.nome}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">${pegaItem.nome}</h5>
+                    <p class="card-text">Posição: ${pegaItem.posicao}</p>
+                    <p class="card-text">Clube: ${pegaItem.clube}</p>
+                    <p class="card-text">Gols: ${pegaItem.gols}</p>
+                    <p class="card-text">Assistências: ${pegaItem.assistencias}</p>
+                    <p class="card-text">Jogos: ${pegaItem.jogos}</p>
+                </div>
+            </div>
+        </div>
+        `;
+
+        postArea.appendChild(cardPost);
+    });
+};
