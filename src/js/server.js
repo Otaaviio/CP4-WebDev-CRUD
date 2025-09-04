@@ -50,3 +50,32 @@ let posts = [
     "favorita": false
   }
 ];
+
+window.onload = () => {
+    showPost();
+};
+
+
+function addPost(e){
+    e.preventDefault();
+
+    const nomeJogadora = document.querySelector("#postNome").value;
+    const posicaoJogadora = document.querySelector("#postPosicao").value;
+    const clubeJogadora = document.querySelector("#postClube").value;
+    const fotoJogadora = document.querySelector("#postFoto").value;
+    const golsJogadora = document.querySelector("#postGols").value;
+    const assistenciasJogadora = document.querySelector("#postAssistencias").value;
+    const jogosJogadora = document.querySelector("#postJogos").value;
+
+    const novoPost = {
+        nome: nomeJogadora,
+        posicao: posicaoJogadora,
+        clube: clubeJogadora,
+        foto: fotoJogadora,
+        gols: golsJogadora,
+        assistencias: assistenciasJogadora,
+        jogos: jogosJogadora,
+    };
+
+    posts.unshift(novoPost);
+};
