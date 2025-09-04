@@ -3,7 +3,7 @@ let posts = [
     "nome": "Andressa Alves",
     "posicao": "Meio-campo",
     "clube": "Corinthians",
-    "foto": "https://example.com/andressa.jpg",
+    "foto": "https://st5.depositphotos.com/12982378/72804/i/450/depositphotos_728044286-stock-photo-woman-white-jersey-holds-soccer.jpg",
     "gols": 15,
     "assistencias": 10,
     "jogos": 28,
@@ -13,7 +13,7 @@ let posts = [
     "nome": "Dayana Rodríguez",
     "posicao": "Meio-campo",
     "clube": "Corinthians",
-    "foto": "https://example.com/dayana.jpg",
+    "foto": "https://st5.depositphotos.com/12982378/72804/i/450/depositphotos_728044286-stock-photo-woman-white-jersey-holds-soccer.jpg",
     "gols": 5,
     "assistencias": 12,
     "jogos": 30,
@@ -23,7 +23,7 @@ let posts = [
     "nome": "Mariza",
     "posicao": "Zagueira",
     "clube": "Corinthians",
-    "foto": "https://example.com/mariza.jpg",
+    "foto": "https://st5.depositphotos.com/12982378/72804/i/450/depositphotos_728044286-stock-photo-woman-white-jersey-holds-soccer.jpg",
     "gols": 2,
     "assistencias": 1,
     "jogos": 32,
@@ -33,7 +33,7 @@ let posts = [
     "nome": "Thaís Regina",
     "posicao": "Zagueira",
     "clube": "Corinthians",
-    "foto": "https://example.com/thais.jpg",
+    "foto": "https://st5.depositphotos.com/12982378/72804/i/450/depositphotos_728044286-stock-photo-woman-white-jersey-holds-soccer.jpg",
     "gols": 1,
     "assistencias": 2,
     "jogos": 25,
@@ -43,13 +43,16 @@ let posts = [
     "nome": "Letícia Teles",
     "posicao": "Zagueira",
     "clube": "Corinthians",
-    "foto": "https://example.com/leticia.jpg",
+    "foto": "https://img.freepik.com/fotos-gratis/mulheres-posando-juntas-ao-ar-livre_23-2148634676.jpg?semt=ais_hybrid&w=740&q=80",
     "gols": 0,
     "assistencias": 0,
     "jogos": 18,
     "favorita": false
   }
 ];
+
+const playerForm = document.querySelector(".player-form");
+const postList = document.querySelector("#postList");
 
 window.onload = () => {
     showPost();
@@ -72,39 +75,36 @@ function addPost(e){
         posicao: posicaoJogadora,
         clube: clubeJogadora,
         foto: fotoJogadora,
-        gols: golsJogadora,
-        assistencias: assistenciasJogadora,
-        jogos: jogosJogadora,
+        gols: parseFloat(golsJogadora),
+        assistencias: parseFloat(assistenciasJogadora),
+        jogos: parseFloat(jogosJogadora),
     };
 
     posts.unshift(novoPost);
+    showPost();
+    playerForm.reset();
 };
 
 function showPost(){
-    const postArea = document.querySelector("#postArea");
+    const postArea = document.querySelector("#postList");
     postArea.innerHTML = "";
 
-    posts.forEach((pegaItem, i) => {
+     posts.forEach((item) => {
         const cardPost = document.createElement("div");
-
-        cardPost.classList.add("card");
+        cardPost.classList.add("player-card");
 
         cardPost.innerHTML = `
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${pegaItem.foto}" class="img-fluid rounded-start" alt="${pegaItem.nome}">
+         <div class="card-image">
+                <img src="${item.foto}" alt="Foto de ${item.nome}">
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">${pegaItem.nome}</h5>
-                    <p class="card-text">Posição: ${pegaItem.posicao}</p>
-                    <p class="card-text">Clube: ${pegaItem.clube}</p>
-                    <p class="card-text">Gols: ${pegaItem.gols}</p>
-                    <p class="card-text">Assistências: ${pegaItem.assistencias}</p>
-                    <p class="card-text">Jogos: ${pegaItem.jogos}</p>
-                </div>
+            <div class="card-content">
+                <h3>${item.nome}</h3>
+                <p><strong>Posição:</strong> ${item.posicao}</p>
+                <p><strong>Clube:</strong> ${item.clube}</p>
+                <p><strong>Gols:</strong> ${item.gols}</p>
+                <p><strong>Assistências:</strong> ${item.assistencias}</p>
+                <p><strong>Jogos:</strong> ${item.jogos}</p>
             </div>
-        </div>
         `;
 
         postArea.appendChild(cardPost);
