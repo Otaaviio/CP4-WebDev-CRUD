@@ -131,6 +131,8 @@ function showPost() {
                 <p><strong>Gols:</strong> ${item.gols}</p>
                 <p><strong>Assistências:</strong> ${item.assistencias}</p>
                 <p><strong>Jogos:</strong> ${item.jogos}</p>
+                <button data-action="Editar" data-index="${i}">Editar</button>
+                <button data-action="Deletar" data-index="${i}">Deletar</button>
             </div>
         `;
 
