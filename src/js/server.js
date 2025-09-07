@@ -82,6 +82,7 @@ const handleClick = (infosDoEvento) => {
 
   if (action === "Editar") updatePost(index);
   else if (action === "Deletar") deletePost(index);
+  else if (action === "Favoritar") favoritarPost(index);
 };
 
 function addPost(e) {
@@ -103,6 +104,7 @@ function addPost(e) {
     gols: parseFloat(golsJogadora),
     assistencias: parseFloat(assistenciasJogadora),
     jogos: parseFloat(jogosJogadora),
+    favorita: false
   };
 
   posts.unshift(novoPost);
@@ -119,6 +121,8 @@ function showPost() {
   posts.forEach((item, i) => {
     const cardPost = document.createElement("div");
     cardPost.classList.add("player-card");
+    const classeFavorito = item.favorita ? 'btn-favoritado' : '';
+    const textoFavorito = item.favorita ? '★ Desfavoritar' : '☆ Favoritar';
 
     cardPost.innerHTML = `
          <div class="card-image">
@@ -131,8 +135,11 @@ function showPost() {
                 <p><strong>Gols:</strong> ${item.gols}</p>
                 <p><strong>Assistências:</strong> ${item.assistencias}</p>
                 <p><strong>Jogos:</strong> ${item.jogos}</p>
-                <button data-action="Editar" data-index="${i}">Editar</button>
-                <button data-action="Deletar" data-index="${i}">Deletar</button>
+                <div class="card-actions">
+                  <button data-action="Favoritar" data-index="${i}" class="${classeFavorito}">${textoFavorito}</button>
+                  <button data-action="Editar" data-index="${i}">Editar</button>
+                  <button data-action="Deletar" data-index="${i}">Deletar</button>
+                </div>
             </div>
         `;
 

@@ -136,7 +136,14 @@ header {
   background-color: #da190b;
 }
 
-/* Estilos do Modal */
+.card-content button[data-action="Favoritar"] {
+  background-color: #ff9800;
+}
+
+.card-content button[data-action="Favoritar"]:hover {
+  background-color: #e68a00;
+}
+
 .modal {
   display: none;
   position: fixed;
