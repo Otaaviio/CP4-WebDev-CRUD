@@ -92,8 +92,7 @@ function addPost(e) {
   const clubeJogadora = document.querySelector("#postClube").value;
   const fotoJogadora = document.querySelector("#postFoto").value;
   const golsJogadora = document.querySelector("#postGols").value;
-  const assistenciasJogadora =
-    document.querySelector("#postAssistencias").value;
+  const assistenciasJogadora = document.querySelector("#postAssistencias").value;
   const jogosJogadora = document.querySelector("#postJogos").value;
 
   const novoPost = {
@@ -109,6 +108,7 @@ function addPost(e) {
   posts.unshift(novoPost);
   savePosts();
   showPost();
+  alert("Jogadora adicionada com sucesso!");
   playerForm.reset();
 }
 
@@ -146,6 +146,7 @@ function deletePost(index) {
     posts.splice(index, 1);
     savePosts();
     showPost();
+    alert("Jogadora excluída com sucesso!");
   }
 }
 
@@ -183,6 +184,7 @@ function saveEditedPost(e) {
   showPost();
 
   modal.style.display = "none";
+  alert("Jogadora editada com sucesso!");
 }
 
 function savePosts() {
