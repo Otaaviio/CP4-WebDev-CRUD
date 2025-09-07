@@ -82,7 +82,7 @@ const handleClick = (infosDoEvento) => {
 
   if (action === "Editar") updatePost(index);
   else if (action === "Deletar") deletePost(index);
-  else if (action === "Favoritar") favoritarPost(index);
+  else if (action === "Favoritar") alternarFavorito(index);
 };
 
 function addPost(e) {
@@ -152,6 +152,7 @@ function deletePost(index) {
   if (confirmar) {
     posts.splice(index, 1);
     savePosts();
+    atualizarListaDeFavoritos(posts)
     showPost();
     alert("Jogadora excluída com sucesso!");
   }
@@ -181,11 +182,12 @@ function saveEditedPost(e) {
   posts[index].posicao = document.getElementById("edit-posicao").value;
   posts[index].clube = document.getElementById("edit-clube").value;
   posts[index].foto = document.getElementById("edit-foto").value;
-  posts[index].gols = parseFloat(document.getElementById("edit-gols").value);
-  posts[index].assistencias = parseFloat(
+  posts[index].gols = parseInt(document.getElementById("edit-gols").value);
+  posts[index].assistencias = parseInt(
     document.getElementById("edit-assistencias").value
   );
-  posts[index].jogos = parseFloat(document.getElementById("edit-jogos").value);
+  posts[index].jogos = parseInt(document.getElementById("edit-jogos").value);
+  posts[index].favorita = statusFavoritoAtual;
 
   savePosts();
   showPost();
@@ -203,4 +205,16 @@ function loadPosts() {
   if (storedPosts) {
     posts = JSON.parse(storedPosts);
   }
+}
+
+function atualizarListaDeFavoritos(arrayCompletoDePosts) {
+  const postsFavoritados = arrayCompletoDePosts.filter(post => post.favorita === true);
+  localStorage.setItem("favoritos", JSON.stringify(postsFavoritados));
+}
+
+function alternarFavorito(index) {
+  posts[index].favorita = !posts[index].favorita;
+  savePosts();
+  showPost();
+  atualizarListaDeFavoritos(posts);
 }
